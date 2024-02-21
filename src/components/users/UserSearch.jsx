@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import GithubContext from "../../githubContext/github/GithubContext";
 
 const UserSearch = () => {
   const [text, setText] = useState("");
 
-  //   const { users, dispatch } = useContext(GithubContext);
+  const { users, dispatch } = useContext(GithubContext);
   //   const { setAlert } = useContext(AlertContext);
 
   const handleSubmit = (e) => {
@@ -20,7 +21,7 @@ const UserSearch = () => {
   return (
     <div className="grid grid-cols-1 xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 mb-8 gap-8">
       <div>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="form-control">
             <div className="relative">
               <input
@@ -40,16 +41,16 @@ const UserSearch = () => {
           </div>
         </form>
       </div>
-      {/* {users.length > 0 && ( */}
-      <div>
-        <button
-          // onClick={() => dispatch({ type: "CLEAR_USERS" })}
-          className="btn btn-ghost btn-lg"
-        >
-          Clear
-        </button>
-      </div>
-      {/* )} */}
+      {users.length > 0 && (
+        <div>
+          <button
+            // onClick={() => dispatch({ type: "CLEAR_USERS" })}
+            className="btn btn-ghost btn-lg"
+          >
+            Clear
+          </button>
+        </div>
+      )}
     </div>
   );
 };
